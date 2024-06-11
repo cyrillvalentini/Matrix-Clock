@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Clock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Matrix Clock</h1>
+    
+    <div id="mode">
+        <label for="mode-select">Modus wählen:</label>
+        <select id="mode-select">
+            <option value="whole">ganze Matrix</option>
+            <option value="clock">mit Uhr</option>
+        </select>
+    </div>
+
+    <div id="led-matrix"></div>
+    
+    <div id="standard-colors">
+        <button class="standard-color" style="background-color: #ffffff;"></button>
+        <button class="standard-color" style="background-color: #f5f6e8;"></button>
+        <button class="standard-color" style="background-color: #f8c09d;"></button>
+        <button class="standard-color" style="background-color: #ef937e;"></button>
+        <button class="standard-color" style="background-color: #ea676c;"></button>
+        <button class="standard-color" style="background-color: #fef79c;"></button>
+        <button class="standard-color" style="background-color: #fed883;"></button>
+        <button class="standard-color" style="background-color: #f37521;"></button>
+        <button class="standard-color" style="background-color: #ea4833;"></button>
+        <button class="standard-color" style="background-color: #e41a4a;"></button>
+        <button class="standard-color" style="background-color: #b71c46;"></button>
+        <button class="standard-color" style="background-color: #e4126b;"></button>
+        <button class="standard-color" style="background-color: #a12059;"></button>
+        <button class="standard-color" style="background-color: #721d47;"></button>
+        <button class="standard-color" style="background-color: #5978bb;"></button>      
+    </div>
+    <div id="standard-colors">    
+        <button class="standard-color" style="background-color: #7bcfe9;"></button>
+        <button class="standard-color" style="background-color: #0094bc;"></button>
+        <button class="standard-color" style="background-color: #126881;"></button>
+        <button class="standard-color" style="background-color: #00b0ad;"></button>
+        <button class="standard-color" style="background-color: #018790;"></button>
+        <button class="standard-color" style="background-color: #43b76e;"></button>
+        <button class="standard-color" style="background-color: #c7dc5b;"></button>
+        <button class="standard-color" style="background-color: #8ec13c;"></button>
+        <button class="standard-color" style="background-color: #cddee6;"></button>
+        <button class="standard-color" style="background-color: #acbac3;"></button>
+        <button class="standard-color" style="background-color: #7a8d9c;"></button>
+        <button class="standard-color" style="background-color: #57636f;"></button>
+        <button class="standard-color" style="background-color: #364d5b;"></button>
+        <button class="standard-color" style="background-color: #0e3441;"></button>
+        <button class="standard-color" style="background-color: #002337;"></button>
+    </div>
+    
+    <div id="color-selector">
+        <label for="mode-select">eigene Farbe wählen:</label>
+        <input type="color" id="color-picker" value="#0000">
+    </div>
+
+    <div id="config">
+        <label for="mode-select">Konfiguration laden (.json-Datei):</label>
+        <button id="download-btn">herunterladen</button>
+        <input type="file" id="upload-input" style="display: none;">
+        <button id="upload-btn">hochladen</button>       
+    </div>
+    
+    <div id="brightness">
+        <label for="mode-select">Helligkeit konfigurieren:</label>
+        <input type="number" id="manual-brightness-input" min="0" max="100" placeholder="Helligkeit (0-100)">
+        <button id="manual-brightness-btn">senden</button> 
+        <button id="auto-brightness-btn">auto</button>     
+    </div>
+
+    <div id="send">
+        <button id="export-btn">Jetzt an Matrix Clock senden</button>
+    </div>
+    
+    <!-- Dialog for confirming the mode -->
+    <div id="mode-dialog" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Bitte wählen Sie den Modus der hochgeladenen Konfiguration:</p>
+            <button id="confirm-whole">Ganze Matrix</button>
+            <button id="confirm-clock">Mit Uhr</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
