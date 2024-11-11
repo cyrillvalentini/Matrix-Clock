@@ -46,14 +46,14 @@ def control_display():
             render_display(current_matrix, clock, current_brightness)
             #print(current_brightness)        
         #If there weren't any changes in matrix or brightness, check if the time has changed.
-        
+
         if x is False:
             if current_matrix is not None:
                 current_time = datetime.now().strftime("%H%M")
                 render_display(current_matrix, clock, current_brightness)              
 
-#Flask-Server   
 
+#Flask-Server   
 
 app = Flask(__name__)
 
@@ -76,7 +76,7 @@ def get_rgb_clock():
     global matrix
     global clock
     data = request.get_json()
-    matrix = data
+    matrix = data   
     clock = True
     return jsonify({"message": "Daten für Uhr erfolgreich empfangen"}), 200
 
