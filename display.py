@@ -17,7 +17,6 @@ def render_display(matrix, clock, brightness):
 
         #automatic brightness
         #turns brightness to 75% from 06:00 until 23:00. Brightness is set to 0% for the night.
-
         if brightness == 101:
             if (datetime.now().strftime("%H:%M:%S") >= "06:00:00") and (datetime.now().strftime("%H:%M:%S") <= "23:00:00"):
                   brightness = 75
@@ -72,7 +71,7 @@ def render_display(matrix, clock, brightness):
             for j in range (17, 22):
                 (matrix[i])[j] = (third[i])[(j-17)]     
             for j in range (22, 27):
-                (matrix[i])[j] = (fourth[i])[(j-22)]     
+                (matrix[i])[j] = (fourth[i])[(j-22)]
 
     #render matrix into serpentine strip for neopixel display
     for k in range(0, 32):    

@@ -9,9 +9,11 @@ executor = ThreadPoolExecutor(max_workers=1)
 matrix = None
 clock = None
 brightness = None
+fontcolor = None
 current_matrix = None
 current_clock = None
 current_brightness = None
+current_fontcolor = None
 
 
 #Clock
@@ -34,23 +36,25 @@ def control_display():
         x = current_time == datetime.now().strftime("%H%M")
         #print("Aktueller Zustand", x)
         
-        if (matrix is not None) or (brightness is not None):
+        if (matrix is not None) or (brightness is not None) or (fontcolor) is not None):
             if (matrix is not None):
                 current_matrix = matrix
             if (brightness is not None):
                 current_brightness = brightness
+            if (fontcolor is not None):
+                current_fontcolor = fontcolor
             matrix = None
             brightness = None
+            fontcolor = None
             current_time = datetime.now().strftime("%H%M")
             #print(current_matrix)
-            render_display(current_matrix, clock, current_brightness)
+            render_display(current_matrix, clock, current_brightness, current_fontcolor)
             #print(current_brightness)        
         #If there weren't any changes in matrix or brightness, check if the time has changed.
-
         if x is False:
             if current_matrix is not None:
                 current_time = datetime.now().strftime("%H%M")
-                render_display(current_matrix, clock, current_brightness)              
+                render_display(current_matrix, clock, current_brightness, current_fontcolor)              
 
 
 #Flask-Server   
@@ -87,6 +91,15 @@ def set_brightness():
     brightness = brightness_new
 
     return jsonify({'message': 'Helligkeit erfolgreich eingestellt'})
+
+@app.route('/api/fontcolor', methods=['POST'])
+def set_fontcolor():
+    global fontcolor
+    fontcolor_new = request.json.get('fontcolor')
+    fontcolor = fontcolor_new
+
+    return jsonify({'message': 'Helligkeit erfolgreich eingestellt'})
+
 
 
 if __name__ == '__main__':
