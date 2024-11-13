@@ -36,7 +36,7 @@ def control_display():
         x = current_time == datetime.now().strftime("%H%M")
         #print("Aktueller Zustand", x)
         
-        if (matrix is not None) or (brightness is not None) or (fontcolor) is not None):
+        if (matrix is not None) or (brightness is not None) or ((fontcolor) is not None):
             if (matrix is not None):
                 current_matrix = matrix
             if (brightness is not None):
@@ -72,6 +72,7 @@ def get_rgb_image():
     global clock
     data = request.get_json()
     matrix = data
+    print(matrix)
     clock = False
     return jsonify({"message": "Daten für ganzes Bild erfolgreich empfangen"}), 200
 
@@ -97,6 +98,8 @@ def set_fontcolor():
     global fontcolor
     fontcolor_new = request.json.get('fontcolor')
     fontcolor = fontcolor_new
+    print(fontcolor)
+    print(type(fontcolor))
 
     return jsonify({'message': 'Helligkeit erfolgreich eingestellt'})
 

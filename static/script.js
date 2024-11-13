@@ -13,14 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const autoBrightnessBtn = document.getElementById('auto-brightness-btn');
     const manualBrightnessInput = document.getElementById('manual-brightness-input');
     const manualBrightnessBtn = document.getElementById('manual-brightness-btn');
+    const fontcolorBtn = document.getElementById('fontcolor-btn');
+    const fontcolorPicker = document.getElementById('fontcolor-picker');
     const standardColors = document.querySelectorAll('.standard-color');
+    var fontColor = document.getElementById('fontcolor');
 
     const rows = 8;
     const cols = 32;
     let ledArray = [];
     let uploadedMode = '';
-
-
     
 
 standardColors.forEach(color => {
@@ -43,12 +44,57 @@ manualBrightnessBtn.addEventListener('click', () => {
         alert('Bitte geben Sie einen gültigen Helligkeitswert zwischen 0 und 100 ein.');
     }
 });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+fontcolorBtn.addEventListener('click', () => {
+    sendfontcolor(hexToRgb(fontcolorPicker.value));
+
+});
+
+
 
 function rgbToHex(rgb) {
     const [r, g, b] = rgb.match(/\d+/g);
     return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
 }
 
+function hexToRgb(hex) {
+    // Remove the hash sign if it's included
+    hex = hex.replace(/^#/, '');
+   
+    // Parse the hex values
+    let bigint = parseInt(hex, 16);
+   
+    // Extract RGB components
+    let r = (bigint >> 16) & 255;
+    let g = (bigint >> 8) & 255;
+    let b = bigint & 255;
+   
+    // Return the RGB values as an object
+    return { r, g, b };
+  }
+   
+function showFontcolor() {
+    if (modeSelect.value === 'clock') {
+        // Show the hidden div
+        fontColor.style.display = 'block';
+    } else {
+        // Hide the hidden div
+        fontColor.style.display = 'none';
+    }
+}
+
+function sendfontcolor(fontcolor) {
+    fetch('/api/fontcolor', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fontcolor: fontcolor })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
 
 function sendBrightness(brightness) {
     fetch('/api/brightness', {
@@ -90,6 +136,7 @@ function sendBrightness(brightness) {
     }
 
     modeSelect.addEventListener('change', createLedMatrix);
+    modeSelect.addEventListener('change', showFontcolor);
 
     exportBtn.addEventListener('click', () => {
         const rgbValues = JSON.stringify(ledArray);

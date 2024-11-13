@@ -47,6 +47,13 @@ h1 {
     width:700px;
 }
 
+#fontcolor {
+    margin-bottom: 20px;
+    display:inline-block;
+    float:left;
+    width:700px;
+}
+
 #config {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -255,6 +262,30 @@ h1 {
     background-color: rgb(249,250,251);
   }
 
+  #fontcolor-btn {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(209,213,219);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-weight: 600;
+    line-height: 1rem;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  
+}
+
+#fontcolor-btn:hover {
+    background-color: rgb(249,250,251);
+  }
+
 #mode-select {
     background-color: #FFFFFF;
     border: 1px solid rgb(209,213,219);
@@ -314,6 +345,26 @@ h1 {
     touch-action: manipulation;
   
 }
+
+#fontcolor-picker {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(209,213,219);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-weight: 400;
+    line-height: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation; 
+}
+
 
 #confirm-whole {
     background-color: #FFFFFF;
