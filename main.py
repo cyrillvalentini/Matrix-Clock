@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from display import render_display
+import copy
 
 executor = ThreadPoolExecutor(max_workers=1)
 
@@ -22,39 +23,40 @@ def control_display():
     global matrix
     global clock
     global brightness
+    global fontcolor
 
     current_matrix = None
     current_clock = None
     current_brightness = None
     current_time = None
-    x = ""
+    current_fontcolor = None
 
     while True:
         #Check wether there was a change in matrix or brightness
-        
+        #print("Current Fontcolor: ", current_fontcolor)
+        #print("Current Brightness: ", current_brightness)
+        #print("Fontcolor", fontcolor)
+        #print("Brightness", brightness)
         time.sleep(1)
-        x = current_time == datetime.now().strftime("%H%M")
-        #print("Aktueller Zustand", x)
-        
-        if (matrix is not None) or (brightness is not None) or ((fontcolor) is not None):
+ 
+        if (matrix is not None) or (brightness is not None) or (fontcolor is not None):
             if (matrix is not None):
                 current_matrix = matrix
+                matrix = None
             if (brightness is not None):
                 current_brightness = brightness
+                brightness = None
             if (fontcolor is not None):
+                
                 current_fontcolor = fontcolor
-            matrix = None
-            brightness = None
-            fontcolor = None
-            current_time = datetime.now().strftime("%H%M")
-            #print(current_matrix)
-            render_display(current_matrix, clock, current_brightness, current_fontcolor)
-            #print(current_brightness)        
+                fontcolor = None
+            current_time = datetime.now().strftime("%H%M")      
+            render_display(current_matrix, clock, current_brightness, current_fontcolor)        
         #If there weren't any changes in matrix or brightness, check if the time has changed.
-        if x is False:
+        if current_time != datetime.now().strftime("%H%M"):
             if current_matrix is not None:
                 current_time = datetime.now().strftime("%H%M")
-                render_display(current_matrix, clock, current_brightness, current_fontcolor)              
+                render_display(current_matrix, clock, current_brightness, current_fontcolor)            
 
 
 #Flask-Server   
@@ -72,7 +74,6 @@ def get_rgb_image():
     global clock
     data = request.get_json()
     matrix = data
-    print(matrix)
     clock = False
     return jsonify({"message": "Daten für ganzes Bild erfolgreich empfangen"}), 200
 
@@ -91,17 +92,14 @@ def set_brightness():
     brightness_new = request.json.get('brightness')
     brightness = brightness_new
 
-    return jsonify({'message': 'Helligkeit erfolgreich eingestellt'})
+    return jsonify({'message': 'Helligkeit erfolgreich eingestellt'}), 200
 
 @app.route('/api/fontcolor', methods=['POST'])
 def set_fontcolor():
     global fontcolor
     fontcolor_new = request.json.get('fontcolor')
     fontcolor = fontcolor_new
-    print(fontcolor)
-    print(type(fontcolor))
-
-    return jsonify({'message': 'Helligkeit erfolgreich eingestellt'})
+    return jsonify({'message': 'Helligkeit erfolgreich eingestellt'}), 200
 
 
 

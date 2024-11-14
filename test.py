@@ -1,4 +1,6 @@
-x = [255, 255, 255]
+import copy
 
-print(len(x))
-print(type(x))
+a = [2,2,2]
+b = a.copy()
+a = [3,3,3]
+print(b)
