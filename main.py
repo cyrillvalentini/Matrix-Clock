@@ -107,5 +107,5 @@ if __name__ == '__main__':
     
     executor.submit(control_display)
     
-    app.run(debug=True, use_reloader=False)
+    app.run(port='0.0.0.0', port='80', use_reloader=False)
 

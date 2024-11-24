@@ -10,6 +10,7 @@ import copy
 # function to render display
 def render_display(matrix, clock, brightness, fontcolor_var):
     fontcolor = copy.deepcopy(fontcolor_var)
+    #matrix = copy.deepcopy(matrix_var)
     #print("Matrix", matrix)
     #print("Clock: ", clock)
     #print("Brightness: ", brightness)
@@ -129,15 +130,14 @@ def render_display(matrix, clock, brightness, fontcolor_var):
 
 def send_display(matrix):
     print(matrix)
-
     ##setup
     #pixel_pin = board.D18
     #num_pixels = 256
     #ORDER = neopixel.GRB
-    #pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness, auto_write=False, pixel_order=ORDER)
+    #pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False, pixel_order=ORDER)
     ##set color for each pixel
     #for i in range (num_pixels):
     #     pixels[i]=matrix[i]
     ##show pixels
     #pixels.show()
-    return
+    return()

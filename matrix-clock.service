@@ -1,0 +1,12 @@
+[Unit]
+Description="Matrix Clock server"
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=<directory>
+ExecStart=/usr/bin/python3 <directory>/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
