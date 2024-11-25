@@ -31,10 +31,10 @@ More feautures can always be added.
 PLA filament seems to be sufficient, although more temperature resistant filament like PETG might be more suitable.
 ## Assembly
 The assembly of the clock is relaively simple. First, the two parts of the cage can be bolted together with the M2 10mm screws and nuts. After pressing in the four standoffs for the display, all the electronics can be mounted an soldered together. By shure to install the operating system on the SD card first and to enable SSH so that the Raspberry Pi can be configured wirelessly. The rest of the assembly follows a sandwich structure. On top of the display, the two parts of the diffuser can be laid on top followed by the acrylic panel. Optionally, the panel can be tinted using a foil intended for tinting windows. This gives the Clock a more "retro" look. Although the process of fitting the foil onto the acryl panel hard to be done without bubbles. For the last part, the two parts of the shell can be slid on. To hold everything in place, eight M2 10mm screws can be bolted into the holes on the sides.
-![alt text](https://github.com/cyrillvalentini/Matrix-Clock/blob/main/images/assembly.png+?raw=true)
+![alt text](https://github.com/cyrillvalentini/Matrix-Clock/blob/main/images/assembly.png?raw=true)
 ### Wiring
 The display runs on 5V. To connnect the raspberry Pi to the same power input, a micro USB cable can be cut apart and soldered to the input. The signal wire from the display is connected to pin 18 over a 300 Ohm resistor.
-![alt text](https://github.com/cyrillvalentini/Matrix-Clock/blob/main/images/wiring-diagram.png+?raw=true)
+![alt text](https://github.com/cyrillvalentini/Matrix-Clock/blob/main/images/wiring-diagram.png?raw=true)
 ## Installation
 
 ### Installing Raspbian
