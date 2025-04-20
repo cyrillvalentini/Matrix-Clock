@@ -83,12 +83,12 @@ def render_display(matrix, clock, brightness, fontcolor_var):
     
     if isinstance(brightness, int):
         #automatic brightness
-        #turns brightness to 50% from 06:00 until 23:00. Brightness is set to 2% for the night.
+        #turns brightness to 50% from 06:00 until 23:00. Brightness is set to 1% for the night.
         if brightness == 101:
-            if (datetime.now().strftime("%H:%M:%S") >= "06:00:00") and (datetime.now().strftime("%H:%M:%S") <= "23:00:00"):
+            if (datetime.now().strftime("%H:%M:%S") >= "06:00:00") and (datetime.now().strftime("%H:%M:%S") <= "22:59:59"):
                   brightness = 50
             else:
-                 brightness = 2
+                 brightness = 1
 
         #brightness
         if (brightness >= 0) and (brightness <= 100):
