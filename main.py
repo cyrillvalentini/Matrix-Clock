@@ -26,17 +26,12 @@ def control_display():
     global fontcolor
 
     current_matrix = None
-    current_clock = None
     current_brightness = None
     current_time = None
     current_fontcolor = None
 
     while True:
-        #Check wether there was a change in matrix or brightness
-        #print("Current Fontcolor: ", current_fontcolor)
-        #print("Current Brightness: ", current_brightness)
-        #print("Fontcolor", fontcolor)
-        #print("Brightness", brightness)
+        
         time.sleep(1)
  
         if (matrix is not None) or (brightness is not None) or (fontcolor is not None):
@@ -51,12 +46,12 @@ def control_display():
                 current_fontcolor = fontcolor
                 fontcolor = None
             current_time = datetime.now().strftime("%H%M")      
-            render_display(current_matrix, clock, current_brightness, current_fontcolor)        
+            render_display(copy.deepcopy(current_matrix), clock, current_brightness, current_fontcolor)        
         #If there weren't any changes in matrix or brightness, check if the time has changed.
         if current_time != datetime.now().strftime("%H%M"):
             if current_matrix is not None:
                 current_time = datetime.now().strftime("%H%M")
-                render_display(current_matrix, clock, current_brightness, current_fontcolor)            
+                render_display(copy.deepcopy(current_matrix), clock, current_brightness, current_fontcolor)            
 
 
 #Flask-Server   
