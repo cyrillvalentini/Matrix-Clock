@@ -43,12 +43,12 @@ As an operating system Raspian Bookworm was used, although other distributions s
 For the Matrix Clock to work, following dependencies have to be installed.
 ```bash
 # update system
-sudo apt update && upgrade
+sudo apt update && sudo apt upgrade -y
 # installing dependencies
 sudo apt install git python3 python3-pip ufw
 # installing required python modules
-sudo pip3 install Flask rpi_ws281x adafruit-circuitpython-neopixel
-sudo python3 -m pip install --force-reinstall adafruit-blinka
+sudo pip3 install --break-system-packages Flask rpi_ws281x adafruit-circuitpython-neopixel
+sudo python3 -m pip install --break-system-packages --force-reinstall adafruit-blinka
 ```
 ### Clone repository
 ```bash
